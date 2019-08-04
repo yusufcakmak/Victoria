@@ -15,6 +15,7 @@ class NumberKeyboardView : RelativeLayout {
     private var listener: KeyboardListener? = null
     private var rlytDelete: RelativeLayout? = null
     private lateinit var numberTvList: MutableList<Button>
+    private var inputText = ""
 
     constructor(context: Context) : super(context) {
         inflateViews()
@@ -58,32 +59,43 @@ class NumberKeyboardView : RelativeLayout {
     }
 
     private fun prepareListeners() {
-        var inputText = ""
 
         for (i in numberTvList.indices) {
             val btn = numberTvList[i]
             btn.setOnClickListener {
-                inputText += i
-                listener?.onTextChanged(inputText)
+                listener?.onTextChanged(addToText(i))
             }
         }
 
         rlytDelete?.setOnClickListener {
-            inputText = if (inputText.length == 1) {
-                ""
-            } else {
-                inputText.dropLast(1)
-            }
-
-            listener?.onTextChanged(inputText)
+            listener?.onTextChanged(dropLast())
         }
 
 
         rlytDelete?.setOnLongClickListener {
-            inputText = ""
-            listener?.onTextChanged(inputText)
+            cleanText()
             true
         }
+    }
+
+    private fun addToText(num: Int) : String {
+        inputText += num
+        return inputText
+    }
+
+    private fun dropLast(): String {
+        inputText = if (inputText.length == 1) {
+            ""
+        } else {
+            inputText.dropLast(1)
+        }
+
+        return inputText
+    }
+
+    private fun cleanText() {
+        inputText = ""
+        listener?.onTextChanged(inputText)
     }
 
     companion object {
