@@ -50,16 +50,11 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
     private fun prepareListeners() {
 
-        for (i in numberButtonList.indices) {
-            val btn = numberButtonList[i]
-            btn.setOnClickListener {
-                listener?.onNumberChanged(addNumberToText(i))
-            }
-        }
-
         numberButtonList.forEach { btn ->
             val selectedNumber = btn.text.toString()
-            listener?.onNumberChanged(addNumberToText(selectedNumber.toInt()))
+            btn.setOnClickListener {
+                listener?.onNumberChanged(addNumberToText(selectedNumber.toInt()))
+            }
         }
 
         btnDelete?.setOnClickListener {
