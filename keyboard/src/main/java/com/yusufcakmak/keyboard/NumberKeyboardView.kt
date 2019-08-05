@@ -15,7 +15,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         fun onNumberChanged(str: String)
     }
 
-    private lateinit var numberButtonList: MutableList<Button>
+    private val numberButtonList: MutableList<Button> = ArrayList(SUM_KEYS)
     private var listener: KeyboardListener? = null
     private var btnDelete: RelativeLayout? = null
     private var numberText = ""
@@ -29,8 +29,6 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         val container = View.inflate(context, R.layout.keyboard_layout, this)
 
         btnDelete = container.findViewById(R.id.rlytDelete)
-
-        numberButtonList = ArrayList(SUM_KEYS)
 
         numberButtonList.apply {
             add(container.findViewById(R.id.btn0))
