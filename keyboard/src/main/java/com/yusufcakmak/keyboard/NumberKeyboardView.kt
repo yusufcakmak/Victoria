@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
+import androidx.core.view.forEach
 
 class NumberKeyboardView @JvmOverloads
 constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
@@ -17,7 +18,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     private lateinit var numberButtonList: MutableList<Button>
     private var listener: KeyboardListener? = null
     private var btnDelete: RelativeLayout? = null
-    private var inputText = ""
+    private var numberText = ""
 
 
     init {
@@ -42,8 +43,6 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             add(container.findViewById(R.id.btn7))
             add(container.findViewById(R.id.btn8))
             add(container.findViewById(R.id.btn9))
-
-
         }
 
         prepareListeners()
@@ -54,17 +53,22 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         for (i in numberButtonList.indices) {
             val btn = numberButtonList[i]
             btn.setOnClickListener {
-                listener?.onNumberChanged(addToText(i))
+                listener?.onNumberChanged(addNumberToText(i))
             }
         }
 
+        numberButtonList.forEach { btn ->
+            val selectedNumber = btn.text.toString()
+            listener?.onNumberChanged(addNumberToText(selectedNumber.toInt()))
+        }
+
         btnDelete?.setOnClickListener {
-            listener?.onNumberChanged(dropLast())
+            listener?.onNumberChanged(dropLastNumber())
         }
 
 
         btnDelete?.setOnLongClickListener {
-            cleanText()
+            cleanNumberText()
             true
         }
     }
@@ -73,24 +77,24 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         this.listener = listener
     }
 
-    private fun addToText(num: Int): String {
-        inputText += num
-        return inputText
+    private fun addNumberToText(num: Int): String {
+        numberText += num
+        return numberText
     }
 
-    private fun dropLast(): String {
-        inputText = if (inputText.length == 1) {
+    private fun dropLastNumber(): String {
+        numberText = if (numberText.length == 1) {
             ""
         } else {
-            inputText.dropLast(1)
+            numberText.dropLast(1)
         }
 
-        return inputText
+        return numberText
     }
 
-    private fun cleanText() {
-        inputText = ""
-        listener?.onNumberChanged(inputText)
+    private fun cleanNumberText() {
+        numberText = ""
+        listener?.onNumberChanged(numberText)
     }
 
     companion object {
