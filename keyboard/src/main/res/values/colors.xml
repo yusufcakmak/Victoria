@@ -8,6 +8,7 @@
 
     <color name="colorBlack">#141C26</color>
     <color name="colorRed">#EA7171</color>
+    <color name="colorDarkRed">#BD1A1A</color>
     <color name="colorWhite">#fff</color>
 
     <color name="colorDivider">#E9EEF2</color>

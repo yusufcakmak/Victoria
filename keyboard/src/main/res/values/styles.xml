@@ -9,10 +9,15 @@
         <item name="android:windowDisablePreview">true</item>
     </style>
 
-    <style name="CustomButtonStyle" parent="@style/Widget.AppCompat.Button.Borderless">
+    <style name="CustomKeyBoardStyle" parent="@style/Widget.AppCompat.Button.Borderless">
+
+    </style>
+
+    <style name="NumberKeyboardView" parent="CustomKeyBoardStyle">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:layout_height">70dp</item>
     </style>
+
 
 </resources>

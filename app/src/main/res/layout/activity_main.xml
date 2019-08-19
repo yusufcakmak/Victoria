@@ -7,18 +7,22 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.AppCompatEditText android:layout_width="match_parent"
-                                                 android:id="@+id/et"
-                                                 android:layout_marginTop="36dp"
-                                                 android:layout_marginRight="16dp"
-                                                 android:layout_marginLeft="16dp"
-                                                 android:layout_height="wrap_content"/>
+    <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:id="@+id/et"
+            android:layout_marginTop="36dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"/>
 
 
-    <com.yusufcakmak.keyboard.NumberKeyboardView android:layout_width="match_parent"
-                                                 android:layout_alignParentBottom="true"
-                                                 android:id="@+id/numView"
-                                                 android:layout_height="wrap_content">
+    <com.yusufcakmak.keyboard.NumberKeyboardView
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/numView"
+            app:keyNumberTextColor="@color/colorBlue"
+            app:keyNumberDividerColor="@color/colorDivider"
+            android:layout_height="300dp">
 
     </com.yusufcakmak.keyboard.NumberKeyboardView>
 

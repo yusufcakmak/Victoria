@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomKeyBoardStyle">
+        <attr name="keyNumberTextColor" format="reference"/>
+        <attr name="keyNumberDividerColor" format="reference"/>
+        <attr name="keyNumberDividerBackgroundColor" format="reference"/>
+        <attr name="keyNumberStyle" format="reference"/>
+    </declare-styleable>
+
+
+</resources>
